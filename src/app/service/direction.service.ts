@@ -1,34 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Direction } from "../interfaces/direction";
+import { Response } from "../interfaces/response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DirectionService {
 
-  private apiServerUrl = '';
+  private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
-  public getDirections():Observable<Direction[]>{
-    return this.http.get<Direction[]>('${this.apiServerUrl}/direction');
+  public getDirections():Observable<Response>{
+    return this.http.get<Response>(`${this.apiServerUrl}/direction/all`);
   }
 
-  public getDirection(id:number):Observable<Direction>{
-    return this.http.get<Direction>('${this.apiServerUrl}/direction/${id}');
+  public getDirection(id:number):Observable<Response>{
+    return this.http.get<Response>(`${this.apiServerUrl}/direction/${id}`);
   }
 
-  public addDirection(direction:Direction):Observable<Direction>{
-    return this.http.post<Direction>('${this.apiServerUrl}/direction/', direction);
+  public addDirection(direction:Direction):Observable<Response>{
+    return this.http.post<Response>(`${this.apiServerUrl}/direction/add`, direction);
   }
 
-  public updateDirection(direction:Direction, id:number):Observable<Direction>{
-    return this.http.put<Direction>('${this.apiServerUrl}/direction/${id}', direction);
+  public updateDirection(direction:Direction):Observable<Response>{
+    return this.http.put<Response>(`${this.apiServerUrl}/direction/update`, direction);
   }
 
-  public deleteDirection(id:number):Observable<void>{
-    return this.http.delete<void>('${this.apiServerUrl}/direction/${id}');
+  public deleteDirection(direction:Direction):Observable<Response>{
+    return this.http.put<Response>(`${this.apiServerUrl}/direction/delete`,direction);
   }
 }

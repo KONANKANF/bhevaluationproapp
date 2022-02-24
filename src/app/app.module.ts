@@ -5,11 +5,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DirectionComponent } from './direction/direction.component';
+import { PersonnelComponent } from './personnel/personnel.component';
+import { DepartementComponent } from './departement/departement.component';
+import { FonctionComponent } from './fonction/fonction.component';
+import { PersonnelPosteComponent } from './personnel-poste/personnel-poste.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DirectionComponent
+    DirectionComponent,
+    PersonnelComponent,
+    DepartementComponent,
+    FonctionComponent,
+    PersonnelPosteComponent
   ],
   imports: [
     BrowserModule,
